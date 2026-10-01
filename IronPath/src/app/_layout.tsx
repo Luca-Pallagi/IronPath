@@ -84,6 +84,8 @@ export default function RootLayout() {
                 }}
           />
           <Stack.Screen name="tag" options={{ title: 'Tagesplan' }} />
+          <Stack.Screen name="editUebung" options={{ title: 'Ändere Übung' }} />
+          <Stack.Screen name="editTag" options={{ title: 'Ändere Tag' }} />
         </Stack>
       </PlanProvider>
     </ExerciseProvider>

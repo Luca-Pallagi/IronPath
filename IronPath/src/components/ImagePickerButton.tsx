@@ -1,5 +1,6 @@
 import { Alert, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { Ionicons } from '@expo/vector-icons';
 import { copyImageToAppDirectory } from '@/utils/imageStorage';
 
 interface ImagePickerButtonProps {
@@ -67,42 +68,76 @@ export default function ImagePickerButton({ imageUri, onImageSelected }: ImagePi
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={handlePress}>
-      {imageUri ? (
-        <Image source={{ uri: imageUri }} style={styles.image} />
-      ) : (
-        <View style={styles.placeholder}>
-          <Text style={styles.placeholderText}>Bild hinzufügen</Text>
-        </View>
-      )}
+    <TouchableOpacity style={styles.container} onPress={handlePress} activeOpacity={0.8}>
+      <View style={styles.frame}>
+        {imageUri ? (
+          <Image source={{ uri: imageUri }} style={styles.image} />
+        ) : (
+          <View style={styles.placeholder}>
+            <Ionicons name="camera-outline" size={32} color="#f5a623" />
+            <Text style={styles.placeholderText}>Bild hinzufügen</Text>
+          </View>
+        )}
+      </View>
+
+      <View style={styles.badge}>
+        <Ionicons name={imageUri ? 'pencil' : 'add'} size={16} color="#0d1216" />
+      </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: 120,
-    height: 120,
-    borderRadius: 16,
-    overflow: 'hidden',
+    width: 132,
+    height: 132,
     alignSelf: 'center',
+    marginTop: 8,
+  },
+  frame: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 22,
+    overflow: 'hidden',
+    borderWidth: 1.5,
+    borderColor: '#f5a623',
+    backgroundColor: '#151c22',
+
+    // Glow
+    shadowColor: '#f5a623',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+    elevation: 6,
   },
   image: {
     width: '100%',
     height: '100%',
   },
   placeholder: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#ddd',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 8,
+    gap: 6,
   },
   placeholderText: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: 13,
+    color: '#9aa5ad',
     textAlign: 'center',
     fontWeight: '600',
+  },
+  badge: {
+    position: 'absolute',
+    right: -6,
+    bottom: -6,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#f5a623',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderColor: '#0d1216',
   },
 });

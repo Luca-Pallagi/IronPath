@@ -53,6 +53,6 @@ export default function EditUebungScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#B8A1E3',
+    backgroundColor: '#0d1216',
   },
 });

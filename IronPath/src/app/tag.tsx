@@ -41,13 +41,20 @@ export default function TagScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  header: { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 },
-  day: { fontSize: 26, fontWeight: 'bold' },
-  title: { fontSize: 18, color: '#1f7a5c', fontWeight: '600', marginTop: 2 },
+  container: { flex: 1, backgroundColor: '#0d1216' },
+  header: {
+    paddingHorizontal: 20,
+    paddingTop: 16,
+    paddingBottom: 12,
+    marginBottom: 4,
+    borderBottomWidth: 1,
+    borderBottomColor: '#232c34',
+  },
+  day: { fontSize: 28, fontWeight: 'bold', color: '#fff' },
+  title: { fontSize: 18, color: '#f5a623', fontWeight: '600', marginTop: 2 },
   list: { flex: 1 },
   listContent: { paddingTop: 8, paddingBottom: 100 },
-  empty: { textAlign: 'center', marginTop: 30, color: '#666', paddingHorizontal: 20 },
+  empty: { textAlign: 'center', marginTop: 30, color: '#6b7680', paddingHorizontal: 20 },
   button: {
     position: 'absolute',
     left: 20,

@@ -47,25 +47,29 @@ export default function Trainingsplan() {
 }
 
 const styles = StyleSheet.create({
-    container: {
+  container: {
     flex: 1,
+    backgroundColor: "#0d1216",
   },
   segmentContainer: {
     flexDirection: "row",
-    backgroundColor: "#1a2128",
-    borderRadius: 20,
-    overflow: "hidden",
+    backgroundColor: "#151c22",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#232c34",
+    padding: 3,
     marginHorizontal: 16,
-    marginVertical: 10,
+    marginTop: 12,
+    marginBottom: 6,
   },
   segment: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 10,
     alignItems: "center",
+    borderRadius: 9,
   },
   segmentActive: {
     backgroundColor: "#1f7a5c",
-    borderRadius: 20,
   },
   segmentText: {
     color: "#9aa5ad",

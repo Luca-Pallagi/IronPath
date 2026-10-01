@@ -30,6 +30,7 @@ export default function Uebung() {
             <TextInput
                 style={styles.input}
                 placeholder="Übung z.B Benchpress..."
+                placeholderTextColor="#6b7680"
                 value={search}
                 onChangeText={setSearch}
             />
@@ -85,24 +86,22 @@ export default function Uebung() {
     const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#0d1216",
     },
     input: {
         alignSelf: "center",
         width: "90%",
-        height: 56,
+        height: 52,
         marginVertical: 16,
         paddingHorizontal: 20,
         flexShrink: 0,              // Suchfeld wird nie gestaucht
-        backgroundColor: "lightgrey",
-        borderRadius: 15,
+        backgroundColor: "#151c22",
+        color: "#fff",
+        fontSize: 16,
+        borderRadius: 14,
         borderWidth: 1,
-        borderColor: "black",
+        borderColor: "#232c34",
         borderStyle: "solid",
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-        elevation: 5,
     },
     chipBar: {
         height: 56,                 // feste Höhe
@@ -118,16 +117,20 @@ export default function Uebung() {
         paddingHorizontal: 18,
         marginRight: 10,
         flexShrink: 0,              // Chips behalten ihre Breite
-        backgroundColor: "lightgrey",
-        borderRadius: 15,
+        backgroundColor: "#151c22",
+        borderWidth: 1,
+        borderColor: "#232c34",
+        borderRadius: 20,
         alignItems: "center",
         justifyContent: "center",
     },
     chipActive: {
         backgroundColor: "#1f7a5c",
+        borderColor: "#2ecc9a",
     },
     chipText: {
         textAlign: "center",
+        color: "#9aa5ad",
     },
     chipTextActive: {
         color: "#fff",
@@ -140,6 +143,11 @@ export default function Uebung() {
         paddingTop: 10,
         paddingBottom: 100,   // Platz, damit der FAB den letzten Eintrag nicht verdeckt
     },
+    empty: {
+        textAlign: "center",
+        color: "#6b7680",
+        marginTop: 30,
+    },
     fab: {
         position: 'absolute',
         right: 20,
@@ -148,15 +156,17 @@ export default function Uebung() {
         height: 60,
         borderRadius: 30,
         backgroundColor: '#1f7a5c',
+        borderWidth: 1.5,
+        borderColor: '#2ecc9a',
         alignItems: 'center',
         justifyContent: 'center',
 
-        // Shadow
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        elevation: 6,
+        // Glow
+        shadowColor: '#2ecc9a',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 10,
+        elevation: 8,
     },
     fabPressed: {
         opacity: 0.8,

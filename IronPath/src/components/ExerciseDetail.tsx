@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 
 const MUSCLES = ['Rücken', 'Brust', 'Schulter', 'Triceps', 'Biceps', 'Beine'];
+const PLACEHOLDER = '#5b6670';
 
 interface ExerciseDetailProps {
   initialExercise?: Exercise;
@@ -118,105 +119,187 @@ export default function ExerciseDetail({
 
   return (
     <ScrollView
+      style={styles.scroll}
       contentContainerStyle={styles.container}
       keyboardShouldPersistTaps="handled"
     >
       <ImagePickerButton imageUri={imageUri} onImageSelected={setImageUri} />
 
-      <Text style={styles.label}>Name</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Übung (z.B. Bankdrücken)"
-        value={name}
-        onChangeText={setName}
-      />
+      <Text style={styles.heading}>{isEdit ? 'Übung bearbeiten' : 'Neue Übung'}</Text>
+      <Text style={styles.subheading}>
+        {isEdit ? 'Passe Details und Ziel an' : 'Lege eine neue Übung für deine Bibliothek an'}
+      </Text>
 
-      <Text style={styles.label}>Muskelgruppe</Text>
-      <View style={styles.chipRow}>
-        {MUSCLES.map((muscle) => {
-          const active = muscle === targetMuscle;
-          return (
-            <Pressable
-              key={muscle}
-              onPress={() => setTargetMuscle(muscle)}
-              style={[styles.chip, active && styles.chipActive]}
-            >
-              <Text style={[styles.chipText, active && styles.chipTextActive]}>
-                {muscle}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
+      <View style={styles.panel}>
+        <Text style={styles.panelTitle}>Details</Text>
 
-      <View style={styles.row}>
-        <View style={styles.field}>
-          <Text style={styles.label}>Sätze</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="3"
-            keyboardType="number-pad"
-            value={sets}
-            onChangeText={setSets}
-          />
-        </View>
-        <View style={styles.field}>
-          <Text style={styles.label}>Wiederholungen</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="8-12"
-            value={reps}
-            onChangeText={setReps}
-          />
-        </View>
-        <View style={styles.field}>
-          <Text style={styles.label}>Gewicht (kg)</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="60"
-            keyboardType="decimal-pad"
-            value={weight}
-            onChangeText={setWeight}
-          />
+        <Text style={styles.label}>Name</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Übung (z.B. Bankdrücken)"
+          placeholderTextColor={PLACEHOLDER}
+          value={name}
+          onChangeText={setName}
+        />
+
+        <Text style={styles.label}>Muskelgruppe</Text>
+        <View style={styles.chipRow}>
+          {MUSCLES.map((muscle) => {
+            const active = muscle === targetMuscle;
+            return (
+              <Pressable
+                key={muscle}
+                onPress={() => setTargetMuscle(muscle)}
+                style={[styles.chip, active && styles.chipActive]}
+              >
+                <Text style={[styles.chipText, active && styles.chipTextActive]}>
+                  {muscle}
+                </Text>
+              </Pressable>
+            );
+          })}
         </View>
       </View>
 
-      <Pressable style={styles.button} onPress={handleSave}>
+      <View style={styles.panel}>
+        <Text style={styles.panelTitle}>Training</Text>
+
+        <View style={styles.statRow}>
+          <View style={styles.stat}>
+            <TextInput
+              style={styles.statInput}
+              placeholder="3"
+              placeholderTextColor={PLACEHOLDER}
+              keyboardType="number-pad"
+              value={sets}
+              onChangeText={setSets}
+            />
+            <Text style={styles.statLabel}>Sätze</Text>
+          </View>
+          <View style={styles.stat}>
+            <TextInput
+              style={styles.statInput}
+              placeholder="8-12"
+              placeholderTextColor={PLACEHOLDER}
+              value={reps}
+              onChangeText={setReps}
+            />
+            <Text style={styles.statLabel}>Wdh.</Text>
+          </View>
+          <View style={styles.stat}>
+            <TextInput
+              style={styles.statInput}
+              placeholder="60"
+              placeholderTextColor={PLACEHOLDER}
+              keyboardType="decimal-pad"
+              value={weight}
+              onChangeText={setWeight}
+            />
+            <Text style={styles.statLabel}>Gewicht (kg)</Text>
+          </View>
+        </View>
+      </View>
+
+      <Pressable
+        style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+        onPress={handleSave}
+      >
         <Text style={styles.buttonText}>Speichern</Text>
       </Pressable>
 
-      {onCancel && (
-        <Pressable style={[styles.button, styles.cancelButton]} onPress={onCancel}>
-          <Text style={styles.buttonText}>Abbrechen</Text>
-        </Pressable>
-      )}
-
-      {onDelete && (
-        <Pressable style={[styles.button, styles.deleteButton]} onPress={handleDelete}>
-          <Text style={styles.buttonText}>Löschen</Text>
-        </Pressable>
+      {(onCancel || onDelete) && (
+        <View style={styles.secondaryRow}>
+          {onCancel && (
+            <Pressable
+              style={({ pressed }) => [
+                styles.secondaryButton,
+                styles.cancelButton,
+                pressed && styles.pressed,
+              ]}
+              onPress={onCancel}
+            >
+              <Text style={[styles.secondaryText, styles.cancelText]}>Abbrechen</Text>
+            </Pressable>
+          )}
+          {onDelete && (
+            <Pressable
+              style={({ pressed }) => [
+                styles.secondaryButton,
+                styles.deleteButton,
+                pressed && styles.pressed,
+              ]}
+              onPress={handleDelete}
+            >
+              <Text style={[styles.secondaryText, styles.deleteText]}>Löschen</Text>
+            </Pressable>
+          )}
+        </View>
       )}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scroll: {
+    flex: 1,
+    backgroundColor: '#0d1216',
+  },
   container: {
     padding: 16,
     paddingBottom: 40,
   },
+  heading: {
+    marginTop: 20,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    textAlign: 'center',
+  },
+  subheading: {
+    marginTop: 4,
+    marginBottom: 20,
+    fontSize: 13,
+    color: '#9aa5ad',
+    textAlign: 'center',
+  },
+  panel: {
+    backgroundColor: '#151c22',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#26323b',
+    padding: 16,
+    marginBottom: 14,
+
+    // Shadow
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  panelTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
   label: {
-    marginTop: 16,
+    marginTop: 14,
     marginBottom: 6,
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#444',
+    fontSize: 11,
+    fontWeight: '700',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+    color: '#9aa5ad',
   },
   input: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 12,
+    backgroundColor: '#0d1216',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#26323b',
+    paddingHorizontal: 14,
+    paddingVertical: 12,
     fontSize: 16,
+    color: '#fff',
   },
   chipRow: {
     flexDirection: 'row',
@@ -224,48 +307,104 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   chip: {
-    height: 40,
-    paddingHorizontal: 18,
+    height: 38,
+    paddingHorizontal: 16,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'lightgrey',
-    borderRadius: 15,
+    backgroundColor: '#0d1216',
+    borderWidth: 1,
+    borderColor: '#26323b',
+    borderRadius: 14,
   },
   chipActive: {
     backgroundColor: '#1f7a5c',
+    borderColor: '#2ecc9a',
   },
   chipText: {
     textAlign: 'center',
+    color: '#9aa5ad',
   },
   chipTextActive: {
     color: '#fff',
     fontWeight: 'bold',
   },
-  row: {
+  statRow: {
     flexDirection: 'row',
     gap: 10,
+    marginTop: 14,
   },
-  field: {
+  stat: {
     flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#0d1216',
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#26323b',
+    paddingTop: 6,
+    paddingBottom: 10,
+    paddingHorizontal: 6,
+  },
+  statInput: {
+    width: '100%',
+    paddingVertical: 8,
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#f5a623',
+    textAlign: 'center',
+  },
+  statLabel: {
+    fontSize: 11,
+    color: '#9aa5ad',
+    textAlign: 'center',
   },
   button: {
     backgroundColor: '#1f7a5c',
-    paddingVertical: 12,
-    borderRadius: 24,
+    paddingVertical: 15,
+    borderRadius: 26,
     alignItems: 'center',
-    marginTop: 24,
-  },
-  cancelButton: {
-    backgroundColor: '#777',
-    marginTop: 12,
-  },
-  deleteButton: {
-    backgroundColor: '#c62828',
-    marginTop: 12,
+    marginTop: 10,
+
+    // Glow
+    shadowColor: '#2ecc9a',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+    elevation: 5,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
+  },
+  pressed: {
+    opacity: 0.75,
+  },
+  secondaryRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 12,
+  },
+  secondaryButton: {
+    flex: 1,
+    paddingVertical: 13,
+    borderRadius: 26,
+    borderWidth: 1,
+    alignItems: 'center',
+  },
+  secondaryText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  cancelButton: {
+    borderColor: '#3a4650',
+  },
+  cancelText: {
+    color: '#9aa5ad',
+  },
+  deleteButton: {
+    borderColor: '#c62828',
+  },
+  deleteText: {
+    color: '#ff5252',
   },
 });

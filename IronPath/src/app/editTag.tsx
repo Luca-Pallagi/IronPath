@@ -60,6 +60,7 @@ export default function EditTagScreen() {
         <TextInput
           style={styles.input}
           placeholder="z.B. Push, Pull, Beine"
+          placeholderTextColor="#6b7680"
           value={title}
           onChangeText={setTitle}
         />
@@ -69,6 +70,7 @@ export default function EditTagScreen() {
         <TextInput
           style={styles.input}
           placeholder="Übung suchen, z.B. Bankdrücken..."
+          placeholderTextColor="#6b7680"
           value={search}
           onChangeText={setSearch}
         />
@@ -119,7 +121,7 @@ export default function EditTagScreen() {
               <Ionicons
                 name={active ? 'checkmark-circle' : 'ellipse-outline'}
                 size={26}
-                color={active ? '#1f7a5c' : '#999'}
+                color={active ? '#2ecc9a' : '#5b6670'}
               />
             </Pressable>
           );
@@ -140,11 +142,19 @@ export default function EditTagScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: { flex: 1, backgroundColor: '#0d1216' },
   content: { padding: 16, paddingBottom: 40 },
-  heading: { fontSize: 24, fontWeight: 'bold' },
-  label: { marginTop: 16, marginBottom: 6, fontSize: 14, fontWeight: '600', color: '#444' },
-  input: { backgroundColor: '#fff', borderRadius: 8, padding: 12, fontSize: 16 },
+  heading: { fontSize: 26, fontWeight: 'bold', color: '#fff' },
+  label: { marginTop: 18, marginBottom: 8, fontSize: 14, fontWeight: '600', color: '#9aa5ad' },
+  input: {
+    backgroundColor: '#151c22',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#232c34',
+    padding: 12,
+    fontSize: 16,
+    color: '#fff',
+  },
   chipBar: { height: 56, flexGrow: 0, flexShrink: 0, marginHorizontal: -16 },
   chipRow: { paddingHorizontal: 16, alignItems: 'center' },
   chip: {
@@ -152,37 +162,39 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     marginRight: 10,
     flexShrink: 0,
-    backgroundColor: 'lightgrey',
-    borderRadius: 15,
+    backgroundColor: '#151c22',
+    borderWidth: 1,
+    borderColor: '#232c34',
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  chipActive: { backgroundColor: '#1f7a5c' },
-  chipText: { textAlign: 'center' },
+  chipActive: { backgroundColor: '#1f7a5c', borderColor: '#2ecc9a' },
+  chipText: { textAlign: 'center', color: '#9aa5ad' },
   chipTextActive: { color: '#fff', fontWeight: 'bold' },
-  empty: { textAlign: 'center', color: '#666', marginVertical: 16 },
+  empty: { textAlign: 'center', color: '#6b7680', marginVertical: 16 },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 12,
-    marginBottom: 8,
-    borderWidth: 2,
-    borderColor: 'transparent',
+    backgroundColor: '#151c22',
+    borderRadius: 14,
+    padding: 14,
+    marginBottom: 10,
+    borderWidth: 1.5,
+    borderColor: '#232c34',
   },
-  rowActive: { borderColor: '#1f7a5c' },
+  rowActive: { borderColor: '#2ecc9a', backgroundColor: '#13221f' },
   rowText: { flex: 1 },
-  rowName: { fontSize: 17, fontWeight: 'bold', color: '#111' },
-  rowInfo: { fontSize: 13, color: '#666', marginTop: 2 },
+  rowName: { fontSize: 17, fontWeight: 'bold', color: '#fff' },
+  rowInfo: { fontSize: 13, color: '#9aa5ad', marginTop: 2 },
   button: {
     backgroundColor: '#1f7a5c',
-    paddingVertical: 12,
+    paddingVertical: 13,
     borderRadius: 24,
     alignItems: 'center',
     marginTop: 20,
   },
-  cancel: { backgroundColor: '#777', marginTop: 12 },
-  clear: { backgroundColor: '#c62828', marginTop: 12 },
+  cancel: { backgroundColor: '#2a343c', marginTop: 12 },
+  clear: { backgroundColor: '#8c2a2a', marginTop: 12 },
   buttonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
 });
