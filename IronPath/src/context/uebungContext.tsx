@@ -3,7 +3,21 @@ import Exercise from '@/models/exercise';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { deleteImageFile } from '@/utils/imageStorage';
 
-const STORAGE_KEY = 'exercises';
+// Neuer Schlüssel, damit alte Daten ohne Muskelgruppe nicht mehr geladen werden
+const STORAGE_KEY = 'exercises_v3';
+
+const DEFAULT_EXERCISES: Exercise[] = [
+  { exercise: 'Bankdrücken', targetMuscle: 'Brust', sets: 3, reps: '8-12', weightKg: 60 },
+  { exercise: 'Schrägbankdrücken', targetMuscle: 'Brust', sets: 3, reps: '8-12', weightKg: 50 },
+  { exercise: 'Klimmzüge', targetMuscle: 'Rücken', sets: 3, reps: '6-10', weightKg: 0 },
+  { exercise: 'Kreuzheben', targetMuscle: 'Rücken', sets: 3, reps: '5-8', weightKg: 80 },
+  { exercise: 'Schulterdrücken', targetMuscle: 'Schulter', sets: 3, reps: '8-12', weightKg: 30 },
+  { exercise: 'Seitheben', targetMuscle: 'Schulter', sets: 3, reps: '12-15', weightKg: 8 },
+  { exercise: 'Trizepsdrücken', targetMuscle: 'Triceps', sets: 3, reps: '10-12', weightKg: 25 },
+  { exercise: 'Bizepscurls', targetMuscle: 'Biceps', sets: 3, reps: '10-12', weightKg: 12 },
+  { exercise: 'Kniebeugen', targetMuscle: 'Beine', sets: 3, reps: '8-12', weightKg: 70 },
+  { exercise: 'Beinpresse', targetMuscle: 'Beine', sets: 3, reps: '10-15', weightKg: 120 },
+];
 
 interface ExerciseContextType {
   exerciseList: Exercise[];
@@ -16,14 +30,7 @@ interface ExerciseContextType {
 const ExerciseContext = createContext<ExerciseContextType | undefined>(undefined);
 
 export function ExerciseProvider({ children }: { children: ReactNode }) {
-  const [exerciseList, setExerciseList] = useState<Exercise[]>([
-    { exercise: 'Bankdrücken', targetMuscle: 'Brust', sets: 3, reps: '8-12', weightKg: 60 },
-    { exercise: 'Schrägbankdrücken', targetMuscle: 'Brust', sets: 3, reps: '8-12', weightKg: 50 },
-    { exercise: 'Klimmzüge', targetMuscle: 'Rücken', sets: 3, reps: '6-10', weightKg: 0 },
-    { exercise: 'Kreuzheben', targetMuscle: 'Rücken', sets: 3, reps: '5-8', weightKg: 80 },
-    { exercise: 'Kniebeugen', targetMuscle: 'Beine', sets: 3, reps: '8-12', weightKg: 70 },
-    { exercise: 'Beinpresse', targetMuscle: 'Beine', sets: 3, reps: '10-15', weightKg: 120 },
-  ]);
+  const [exerciseList, setExerciseList] = useState<Exercise[]>(DEFAULT_EXERCISES);
   const [isLoading, setIsLoading] = useState(true);
 
   const addExercise = (exercise: Exercise) => {
@@ -32,12 +39,9 @@ export function ExerciseProvider({ children }: { children: ReactNode }) {
 
   const updateExercise = (name: string, updated: Exercise) => {
     const old = exerciseList.find((e) => e.exercise === name);
-
-    // Altes Bild löschen, falls es durch ein neues ersetzt wurde
     if (old?.imageUri && old.imageUri !== updated.imageUri) {
       deleteImageFile(old.imageUri);
     }
-
     setExerciseList((current) =>
       current.map((e) => (e.exercise === name ? updated : e))
     );
@@ -48,7 +52,6 @@ export function ExerciseProvider({ children }: { children: ReactNode }) {
     if (toDelete?.imageUri) {
       deleteImageFile(toDelete.imageUri);
     }
-
     setExerciseList((current) => current.filter((e) => e.exercise !== name));
   };
 
@@ -57,46 +60,27 @@ export function ExerciseProvider({ children }: { children: ReactNode }) {
     const loadExercises = async () => {
       try {
         const stored = await AsyncStorage.getItem(STORAGE_KEY);
-
-        if (stored === null) {
-          console.log('Keine gespeicherten Übungen gefunden, verwende Startliste.');
-          return;
+        if (stored !== null) {
+          const parsed: Exercise[] = JSON.parse(stored);
+          setExerciseList(
+            parsed.map((e) => ({ ...e, targetMuscle: e.targetMuscle ?? 'Alle' }))
+          );
         }
-
-        const parsed: Exercise[] = JSON.parse(stored);
-
-        // Ältere Einträge ohne targetMuscle ergänzen, damit nichts undefined ist
-        const migrated = parsed.map((e) => ({
-          ...e,
-          targetMuscle: e.targetMuscle ?? 'Alle',
-        }));
-
-        setExerciseList(migrated);
-        console.log('Übungen geladen:', migrated.length);
       } catch (error) {
         console.error('Fehler beim Laden der Übungen:', error);
       } finally {
         setIsLoading(false);
       }
     };
-
     loadExercises();
   }, []);
 
   // Bei jeder Änderung speichern
   useEffect(() => {
     if (isLoading) return;
-
-    const saveExercises = async () => {
-      try {
-        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(exerciseList));
-        console.log('Übungen gespeichert:', exerciseList.length);
-      } catch (error) {
-        console.error('Fehler beim Speichern der Übungen:', error);
-      }
-    };
-
-    saveExercises();
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(exerciseList)).catch((error) =>
+      console.error('Fehler beim Speichern der Übungen:', error)
+    );
   }, [exerciseList, isLoading]);
 
   return (
