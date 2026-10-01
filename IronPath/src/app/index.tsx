@@ -1,16 +1,19 @@
 import { Text, View, StyleSheet, Pressable } from "react-native";
+import { useRouter } from 'expo-router';
 
 export default function Index() {
+  const router = useRouter();
+
   return (
 
     <View style={styles.container}>
-      <Pressable style={styles.card}>
+      <Pressable style={styles.card} onPress={() => router.push('/trainingsplan')}>
         <Text>Trainingsplan</Text>
       </Pressable>
-      <Pressable style={styles.card}>
+      <Pressable style={styles.card} onPress={() => router.push('/uebung')}>
         <Text>Übungen</Text>
       </Pressable>
-      <Pressable style={styles.card}>
+      <Pressable style={styles.card} onPress={() => router.push('/skillTree')}>
         <Text>Skill-Tree</Text>
       </Pressable>
     </View>
