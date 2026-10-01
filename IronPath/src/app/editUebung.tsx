@@ -3,11 +3,13 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useExercises } from '@/context/uebungContext';
 import ExerciseDetail from '@/components/ExerciseDetail';
 import Exercise from '@/models/exercise';
+import { usePlan } from '@/context/planContext';
 
 export default function EditUebungScreen() {
   const router = useRouter();
   const { exercise: exerciseName } = useLocalSearchParams<{ exercise: string }>();
   const { exerciseList, updateExercise, removeExercise } = useExercises();
+  const { renameExercise } = usePlan();
 
   const exercise = exerciseList.find((e) => e.exercise === exerciseName);
 
@@ -20,8 +22,11 @@ export default function EditUebungScreen() {
   };
 
   const handleSave = (updated: Exercise) => {
-    updateExercise(exerciseName, updated);
-    goBack();
+      if (updated.exercise !== exerciseName) {
+        renameExercise(exerciseName, updated.exercise);
+      }
+      updateExercise(exerciseName, updated);
+      goBack();
   };
 
   const handleDelete = () => {

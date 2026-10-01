@@ -1,7 +1,8 @@
 import { Pressable, View } from 'react-native';
 import { Stack, useRouter, usePathname } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { ExerciseProvider } from '../context/uebungContext'
+import { ExerciseProvider } from '../context/uebungContext';
+import { PlanProvider } from '@/context/planContext';
 
 const ACCENT = '#f5a623';
 const SLOT = 48; // gleich breit links und rechts, damit der Titel mittig bleibt
@@ -49,39 +50,42 @@ export default function RootLayout() {
 
   return (
     <ExerciseProvider>
-      <Stack
-        screenOptions={{
-              headerLeft: () => <BackButton />,
-              headerRight: () => <HomeButton />,
-              headerTitleAlign: 'center',
-              headerStyle: { backgroundColor: '#0d1216' },
-              headerTintColor: '#fff',
-            }}
-      >
-        <Stack.Screen
-          name="index"
-          options={{
-                title: 'Home',
-              }}/>
-        <Stack.Screen
-          name="trainingsplan"
-          options={{
-                title: 'Trainingsplan',
+      <PlanProvider>
+        <Stack
+          screenOptions={{
+                headerLeft: () => <BackButton />,
+                headerRight: () => <HomeButton />,
+                headerTitleAlign: 'center',
+                headerStyle: { backgroundColor: '#0d1216' },
+                headerTintColor: '#fff',
               }}
-        />
-        <Stack.Screen
-          name="uebung"
-          options={{
-                title: 'Übungen',
-              }}
-        />
-        <Stack.Screen
-          name="skillTree"
-          options={{
-                title: 'Skill-Tree',
-              }}
-        />
-      </Stack>  
+        >
+          <Stack.Screen
+            name="index"
+            options={{
+                  title: 'Home',
+                }}/>
+          <Stack.Screen
+            name="trainingsplan"
+            options={{
+                  title: 'Trainingsplan',
+                }}
+          />
+          <Stack.Screen
+            name="uebung"
+            options={{
+                  title: 'Übungen',
+                }}
+          />
+          <Stack.Screen
+            name="skillTree"
+            options={{
+                  title: 'Skill-Tree',
+                }}
+          />
+          <Stack.Screen name="tag" options={{ title: 'Tagesplan' }} />
+        </Stack>
+      </PlanProvider>
     </ExerciseProvider>
   )
 }

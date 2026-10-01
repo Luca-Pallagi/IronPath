@@ -12,6 +12,7 @@ interface PlanContextType {
   plan: DayPlan[];
   isLoading: boolean;
   updateDay: (day: string, title: string, exercises: string[]) => void;
+  renameExercise: (oldName: string, newName: string) => void;
 }
 
 const PlanContext = createContext<PlanContextType | undefined>(undefined);
@@ -23,6 +24,14 @@ export function PlanProvider({ children }: { children: ReactNode }) {
   const updateDay = (day: string, title: string, exercises: string[]) => {
     setPlan((current) =>
       current.map((d) => (d.day === day ? { day, title, exercises } : d))
+    );
+  };
+  const renameExercise = (oldName: string, newName: string) => {
+    setPlan((current) =>
+      current.map((d) => ({
+        ...d,
+        exercises: d.exercises.map((n) => (n === oldName ? newName : n)),
+      }))
     );
   };
 
@@ -50,7 +59,7 @@ export function PlanProvider({ children }: { children: ReactNode }) {
   }, [plan, isLoading]);
 
   return (
-    <PlanContext.Provider value={{ plan, isLoading, updateDay }}>
+    <PlanContext.Provider value={{ plan, isLoading, updateDay, renameExercise }}>
       {children}
     </PlanContext.Provider>
   );
