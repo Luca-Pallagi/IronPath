@@ -1,5 +1,6 @@
-import { Text, View, StyleSheet, Pressable, ScrollView, TextInput } from "react-native";
+import { Text, View, StyleSheet, Pressable, ScrollView, TextInput, FlatList } from "react-native";
 import { useState } from "react";
+import { useUebung } from '@/context/uebungContext';
 
 const MUSCLES = ["Alle", "Rücken", "Brust", "Schulter", "Triceps", "Biceps", "Beine"];
 
