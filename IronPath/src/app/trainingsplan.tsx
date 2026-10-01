@@ -1,63 +1,78 @@
-import { Text, ScrollView, StyleSheet, Pressable } from "react-native";
+import { Text, ScrollView, StyleSheet, Pressable, View } from "react-native";
+import { useState } from "react";
+import { useRouter } from 'expo-router';
+import Wochenplan from "../components/wochenplan";
+import EditWochenplan from "../components/editWochenplan";
+
+const VIEWS = ["Wochenplan", "Edit"];
+
+type SegmentedControlProps = {
+  options: string[];
+  selected: string;
+  onChange: (value: string) => void;
+};
+
+const SegmentedControl = ({ options, selected, onChange }: SegmentedControlProps) => (
+  <View style={styles.segmentContainer}>
+    {options.map((option) => {
+      const active = option === selected;
+      return (
+        <Pressable
+          key={option}
+          onPress={() => onChange(option)}
+          style={[styles.segment, active && styles.segmentActive]}
+          accessibilityRole="button"
+          accessibilityState={{ selected: active }}
+        >
+          <Text style={[styles.segmentText, active && styles.segmentTextActive]}>
+            {option}
+          </Text>
+        </Pressable>
+      );
+    })}
+  </View>
+  // SegmentedControl wurde mit Hilfe der KI erstellt.
+);
 
 export default function Trainingsplan() {
-  return (
-    <ScrollView
-      style={styles.scroll}
-      contentContainerStyle={styles.content}
-    >
-      <Pressable style={styles.card}>
-        <Text style={styles.cardDay}>Montag</Text>
-      </Pressable>
-      <Pressable style={styles.card}>
-        <Text style={styles.cardDay}>Dienstag</Text>
-      </Pressable>
-      <Pressable style={styles.card}>
-        <Text style={styles.cardDay}>Mittwoch</Text>
-      </Pressable>
-      <Pressable style={styles.card}>
-        <Text style={styles.cardDay}>Donnerstag</Text>
-      </Pressable>
-      <Pressable style={styles.card}>
-        <Text style={styles.cardDay}>Freitag</Text>
-      </Pressable>
-      <Pressable style={styles.card}>
-        <Text style={styles.cardDay}>Samstag</Text>
-      </Pressable>
-      <Pressable style={styles.card}>
-        <Text style={styles.cardDay}>Sonntag</Text>
-      </Pressable>
-    </ScrollView>
-  );
+    
+    const [view, setView] = useState("Wochenplan");
+
+    return (
+        <View style={styles.container}>
+        <SegmentedControl options={VIEWS} selected={view} onChange={setView} />
+        {view === "Wochenplan" ? <Wochenplan /> : <EditWochenplan />}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  scroll: {
+    container: {
     flex: 1,
   },
-  content: {
-    flexGrow: 1,
+  segmentContainer: {
+    flexDirection: "row",
+    backgroundColor: "#1a2128",
+    borderRadius: 20,
+    overflow: "hidden",
+    marginHorizontal: 16,
+    marginVertical: 10,
+  },
+  segment: {
+    flex: 1,
+    paddingVertical: 12,
     alignItems: "center",
-    paddingVertical: 10,
   },
-  card: {
-    backgroundColor: "lightgrey",
-    width: "90%",
-    height: 120,
-    padding: 12,
-    margin: 15,
-    borderRadius: 10,
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-
-    // Shadow
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5,
+  segmentActive: {
+    backgroundColor: "#1f7a5c",
+    borderRadius: 20,
   },
-  cardDay: {
-    fontSize: 20,
+  segmentText: {
+    color: "#9aa5ad",
+    fontSize: 14,
+  },
+  segmentTextActive: {
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
