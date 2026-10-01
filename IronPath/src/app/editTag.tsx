@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useExercises } from '@/context/uebungContext';
 import { usePlan } from '@/context/planContext';
+
+const MUSCLES = ['Alle', 'Rücken', 'Brust', 'Schulter', 'Triceps', 'Biceps', 'Beine'];
+
+const norm = (text: string) => (text ?? '').trim().toLowerCase();
 
 export default function EditTagScreen() {
   const router = useRouter();
@@ -15,6 +19,19 @@ export default function EditTagScreen() {
 
   const [title, setTitle] = useState(current?.title ?? '');
   const [selected, setSelected] = useState<string[]>(current?.exercises ?? []);
+  const [search, setSearch] = useState('');
+  const [selectedMuscle, setSelectedMuscle] = useState('Alle');
+
+  const filtered = useMemo(
+    () =>
+      exerciseList.filter((e) => {
+        const matchesMuscle =
+          selectedMuscle === 'Alle' || norm(e.targetMuscle) === norm(selectedMuscle);
+        const matchesSearch = norm(e.exercise).includes(norm(search));
+        return matchesMuscle && matchesSearch;
+      }),
+    [exerciseList, search, selectedMuscle]
+  );
 
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/'));
 
@@ -48,7 +65,44 @@ export default function EditTagScreen() {
         />
 
         <Text style={styles.label}>Übungen ({selected.length} gewählt)</Text>
-        {exerciseList.map((e) => {
+
+        <TextInput
+          style={styles.input}
+          placeholder="Übung suchen, z.B. Bankdrücken..."
+          value={search}
+          onChangeText={setSearch}
+        />
+
+        <View style={styles.chipBar}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.chipRow}
+            keyboardShouldPersistTaps="handled"
+          >
+            {MUSCLES.map((muscle) => {
+              const active = muscle === selectedMuscle;
+              return (
+                <Pressable
+                  key={muscle}
+                  onPress={() => setSelectedMuscle(muscle)}
+                  style={[styles.chip, active && styles.chipActive]}
+                >
+                  <Text
+                    numberOfLines={1}
+                    style={[styles.chipText, active && styles.chipTextActive]}
+                  >
+                    {muscle}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+        </View>
+
+        {filtered.length === 0 && <Text style={styles.empty}>Keine Übungen gefunden</Text>}
+
+        {filtered.map((e) => {
           const active = selected.includes(e.exercise);
           return (
             <Pressable
@@ -91,6 +145,22 @@ const styles = StyleSheet.create({
   heading: { fontSize: 24, fontWeight: 'bold' },
   label: { marginTop: 16, marginBottom: 6, fontSize: 14, fontWeight: '600', color: '#444' },
   input: { backgroundColor: '#fff', borderRadius: 8, padding: 12, fontSize: 16 },
+  chipBar: { height: 56, flexGrow: 0, flexShrink: 0, marginHorizontal: -16 },
+  chipRow: { paddingHorizontal: 16, alignItems: 'center' },
+  chip: {
+    height: 40,
+    paddingHorizontal: 18,
+    marginRight: 10,
+    flexShrink: 0,
+    backgroundColor: 'lightgrey',
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  chipActive: { backgroundColor: '#1f7a5c' },
+  chipText: { textAlign: 'center' },
+  chipTextActive: { color: '#fff', fontWeight: 'bold' },
+  empty: { textAlign: 'center', color: '#666', marginVertical: 16 },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
