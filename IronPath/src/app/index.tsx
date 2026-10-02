@@ -5,11 +5,12 @@ import { Ionicons } from '@expo/vector-icons';
 const GOLD = '#f5a623';
 const GREEN = '#2ecc9a';
 const PURPLE = '#a371f7';
+const BLUE = '#3b9eff';
 
 type MenuItem = {
   title: string;
   subtitle: string;
-  route: '/trainingsplan' | '/uebung' | '/skillTree';
+  route: '/trainingsplan' | '/uebung' | '/skillTree' | '/statistik';
   icon: keyof typeof Ionicons.glyphMap;
   color: string;
 };
@@ -28,6 +29,13 @@ const ITEMS: MenuItem[] = [
     route: '/uebung',
     icon: 'barbell-outline',
     color: GREEN,
+  },
+  {
+    title: 'Statistik',
+    subtitle: 'Sieh, wie stark du wirst',
+    route: '/statistik',
+    icon: 'stats-chart-outline',
+    color: BLUE,
   },
   {
     title: 'Skill-Tree',

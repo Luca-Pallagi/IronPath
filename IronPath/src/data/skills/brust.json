@@ -1,0 +1,82 @@
+{
+  "muskel": "Brust",
+  "skills": [
+    {
+      "id": "push-up-base",
+      "name": "Basis Liegestütze",
+      "beschreibung": "Schaffe mind. 5 saubere Liegestütze.",
+      "icon": "body-outline",
+      "voraussetzungen": []
+    },
+    {
+      "id": "push-up-anfaenger",
+      "name": "Anfänger Liegestütze",
+      "beschreibung": "Schaffe mind. 15 saubere Liegestütze.",
+      "icon": "body-outline",
+      "voraussetzungen": ["push-up-base"]
+    },
+    {
+      "id": "push-up-fortgeschrittener",
+      "name": "Fortgeschrittener Liegestütze",
+      "beschreibung": "Schaffe mind. 25 saubere Liegestütze.",
+      "icon": "body-outline",
+      "voraussetzungen": ["push-up-anfaenger"]
+    },
+    {
+      "id": "push-up-experte",
+      "name": "Experte Liegestütze",
+      "beschreibung": "Schaffe mind. 40 saubere Liegestütze.",
+      "icon": "body-outline",
+      "voraussetzungen": ["push-up-fortgeschrittener"]
+    },
+    {
+      "id": "push-up-one-arm",
+      "name": "Einarmiger Liegestütz",
+      "beschreibung": "Schaffe einen sauberen Liegestütz mit nur einem Arm.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["push-up-experte"]
+    },
+    {
+      "id": "bench-press-base",
+      "name": "Basis Bankdrücken",
+      "beschreibung": "Schaffe mind. 8 Wiederholungen mit der leeren Stange (20kg).",
+      "icon": "barbell-outline",
+      "voraussetzungen": []
+    },
+    {
+      "id": "bench-press-anfaenger",
+      "name": "Anfänger Bankdrücken",
+      "beschreibung": "Drücke mind. 5 Wiederholungen mit dem halben Körpergewicht.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["bench-press-base"]
+    },
+    {
+      "id": "bench-press-fortgeschrittener",
+      "name": "Fortgeschrittener Bankdrücken",
+      "beschreibung": "Drücke mind. 5 Wiederholungen mit dem 0,75-fachen Körpergewicht.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["bench-press-anfaenger"]
+    },
+    {
+      "id": "bench-press-experte",
+      "name": "Experte Bankdrücken",
+      "beschreibung": "Drücke mind. 5 Wiederholungen mit dem eigenen Körpergewicht.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["bench-press-fortgeschrittener"]
+    },
+    {
+      "id": "bench-press-profi",
+      "name": "Absolute Unit",
+      "beschreibung": "Drücke einmal das 1,5-fache deines Körpergewichts.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["bench-press-experte"]
+    },
+    {
+      "id": "bench-press-letzterMeilenstein",
+      "name": "GOAT",
+      "beschreibung": "Drücke mind. 6 Mal 100kg",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["bench-press-base"]
+    }
+  ]
+}

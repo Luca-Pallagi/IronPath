@@ -1,0 +1,75 @@
+{
+  "muskel": "Rücken",
+  "skills": [
+    {
+      "id": "pull-up-base",
+      "name": "Basis Pull-up",
+      "beschreibung": "Schaffe mind. 2 schöne Pull-up.",
+      "icon": "barbell-outline",
+      "voraussetzungen": []
+    },
+    {
+      "id": "pull-up-anfaenger",
+      "name": "Anfänger Pull-up",
+      "beschreibung": "Schaffe mind. 5 schöne Pull-ups",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["pull-up-base"]
+    },
+    {
+      "id": "pull-up-fortgeschrittener",
+      "name": "Fortgeschritener Pull-up",
+      "beschreibung": "Schaffe mind. 10 schöne Pull-ups",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["pull-up-anfaenger"]
+    },
+    {
+      "id": "pull-up-experte",
+      "name": "Experte Pull-up",
+      "beschreibung": "Schaffe mind. 15 schöne Pull-ups",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["pull-up-fortgeschrittener"]
+    },
+    {
+      "id": "weighted-pull-up-base",
+      "name": "Weighted Pull-up Basis",
+      "beschreibung": "Schaffe mind. 2 Pull-ups mit +5kg",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["pull-up-base"]
+    },
+    {
+      "id": "weighted-pull-up-base2",
+      "name": "Weighted Pull-up Basis2",
+      "beschreibung": "Schaffe mind. 12 Pull-ups mit +5kg",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["weighted-pull-up-base"]
+    },
+    {
+      "id": "weighted-pull-up-anfaenger",
+      "name": "Weighted Pull-up Anfägner",
+      "beschreibung": "Schaffe mind. 12 Pull-ups mit +10kg",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["weighted-pull-up-base2"]
+    },
+    {
+      "id": "weighted-pull-up-fortgeschrittener",
+      "name": "Weighted Pull-up Fortgeschrittener",
+      "beschreibung": "Schaffe mind. 8 Pull-ups mit +15kg",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["weighted-pull-up-anfaenger"]
+    },
+    {
+      "id": "weighted-pull-up-experte",
+      "name": "Weighted Pull-up Experte",
+      "beschreibung": "Schaffe mind. 6 Pull-ups mit +25kg",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["weighted-pull-up-fortgeschrittener"]
+    },
+    {
+      "id": "weighted-pull-up-absoluteUnite",
+      "name": "Absolute Unit",
+      "beschreibung": "Schaffe einen Pull-ups mit +50kg",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["weighted-pull-up-base"]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "muskel": "Triceps",
+  "skills": [
+    {
+      "id": "triceps-base",
+      "name": "Basis Trizeps",
+      "beschreibung": "Schaffe mind. 5 enge Liegestütze (Diamond oder Hände schulterbreit, Ellbogen am Körper).",
+      "icon": "body-outline",
+      "voraussetzungen": []
+    },
+    {
+      "id": "dips-anfaenger",
+      "name": "Anfänger Dips",
+      "beschreibung": "Schaffe mind. 5 Dips am Barren oder an der Bank.",
+      "icon": "body-outline",
+      "voraussetzungen": ["triceps-base"]
+    },
+    {
+      "id": "dips-fortgeschrittener",
+      "name": "Fortgeschrittener Dips",
+      "beschreibung": "Schaffe mind. 12 Dips am Barren.",
+      "icon": "body-outline",
+      "voraussetzungen": ["dips-anfaenger"]
+    },
+    {
+      "id": "dips-experte",
+      "name": "Experte Dips",
+      "beschreibung": "Schaffe mind. 20 Dips am Barren.",
+      "icon": "body-outline",
+      "voraussetzungen": ["dips-fortgeschrittener"]
+    },
+    {
+      "id": "dips-weighted",
+      "name": "Weighted Dips",
+      "beschreibung": "Schaffe mind. 8 Dips mit +20kg.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["dips-experte"]
+    },
+    {
+      "id": "triceps-pushdown-base",
+      "name": "Basis Trizepsdrücken",
+      "beschreibung": "Drücke mind. 10 Wiederholungen am Kabelzug mit 20kg.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["triceps-base"]
+    },
+    {
+      "id": "triceps-pushdown-anfaenger",
+      "name": "Anfänger Trizepsdrücken",
+      "beschreibung": "Drücke mind. 10 Wiederholungen am Kabelzug mit 30kg.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["triceps-pushdown-base"]
+    },
+    {
+      "id": "triceps-pushdown-fortgeschrittener",
+      "name": "Fortgeschrittener Trizepsdrücken",
+      "beschreibung": "Drücke mind. 10 Wiederholungen am Kabelzug mit 40kg.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["triceps-pushdown-anfaenger"]
+    },
+    {
+      "id": "triceps-pushdown-experte",
+      "name": "Experte Trizepsdrücken",
+      "beschreibung": "Drücke mind. 10 Wiederholungen am Kabelzug mit 50kg.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["triceps-pushdown-fortgeschrittener"]
+    },
+    {
+      "id": "triceps-absolute-unit",
+      "name": "Absolute Unit",
+      "beschreibung": "Drücke mind. 10 Wiederholungen am Kabelzug mit 65kg.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["triceps-pushdown-experte"]
+    }
+  ]
+}

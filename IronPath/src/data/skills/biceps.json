@@ -1,0 +1,68 @@
+{
+  "muskel": "Biceps",
+  "skills": [
+    {
+      "id": "biceps-base",
+      "name": "Basis Bizeps",
+      "beschreibung": "Schaffe mind. 8 Curls mit Kurzhanteln à 5kg pro Arm.",
+      "icon": "barbell-outline",
+      "voraussetzungen": []
+    },
+    {
+      "id": "chin-up-anfaenger",
+      "name": "Anfänger Chin-up",
+      "beschreibung": "Schaffe mind. 3 saubere Chin-ups (Untergriff).",
+      "icon": "body-outline",
+      "voraussetzungen": ["biceps-base"]
+    },
+    {
+      "id": "chin-up-fortgeschrittener",
+      "name": "Fortgeschrittener Chin-up",
+      "beschreibung": "Schaffe mind. 8 saubere Chin-ups.",
+      "icon": "body-outline",
+      "voraussetzungen": ["chin-up-anfaenger"]
+    },
+    {
+      "id": "chin-up-experte",
+      "name": "Experte Chin-up",
+      "beschreibung": "Schaffe mind. 15 saubere Chin-ups.",
+      "icon": "body-outline",
+      "voraussetzungen": ["chin-up-fortgeschrittener"]
+    },
+    {
+      "id": "chin-up-weighted",
+      "name": "Weighted Chin-up",
+      "beschreibung": "Schaffe mind. 5 Chin-ups mit +20kg.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["chin-up-experte"]
+    },
+    {
+      "id": "curl-anfaenger",
+      "name": "Anfänger Curls",
+      "beschreibung": "Schaffe mind. 10 Curls mit Kurzhanteln à 10kg pro Arm.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["biceps-base"]
+    },
+    {
+      "id": "curl-fortgeschrittener",
+      "name": "Fortgeschrittener Curls",
+      "beschreibung": "Schaffe mind. 10 Curls mit Kurzhanteln à 15kg pro Arm.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["curl-anfaenger"]
+    },
+    {
+      "id": "curl-experte",
+      "name": "Experte Curls",
+      "beschreibung": "Schaffe mind. 10 Curls mit Kurzhanteln à 20kg pro Arm.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["curl-fortgeschrittener"]
+    },
+    {
+      "id": "curl-absolute-unit",
+      "name": "Absolute Unit",
+      "beschreibung": "Schaffe mind. 8 Curls mit der Langhantel (50kg), ohne Schwung.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["curl-experte"]
+    }
+  ]
+}

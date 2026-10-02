@@ -1,0 +1,68 @@
+{
+  "muskel": "Beine",
+  "skills": [
+    {
+      "id": "legs-base",
+      "name": "Basis Beine",
+      "beschreibung": "Schaffe mind. 15 saubere Kniebeugen mit dem eigenen Körpergewicht.",
+      "icon": "walk-outline",
+      "voraussetzungen": []
+    },
+    {
+      "id": "squat-anfaenger",
+      "name": "Anfänger Kniebeugen",
+      "beschreibung": "Schaffe mind. 8 Kniebeugen mit der leeren Stange (20kg).",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["legs-base"]
+    },
+    {
+      "id": "squat-fortgeschrittener",
+      "name": "Fortgeschrittener Kniebeugen",
+      "beschreibung": "Schaffe mind. 5 Kniebeugen mit dem eigenen Körpergewicht auf der Stange.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["squat-anfaenger"]
+    },
+    {
+      "id": "squat-experte",
+      "name": "Experte Kniebeugen",
+      "beschreibung": "Schaffe mind. 5 Kniebeugen mit dem 1,5-fachen Körpergewicht.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["squat-fortgeschrittener"]
+    },
+    {
+      "id": "squat-absolute-unit",
+      "name": "Absolute Unit",
+      "beschreibung": "Schaffe eine Kniebeuge mit dem doppelten Körpergewicht.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["squat-experte"]
+    },
+    {
+      "id": "deadlift-anfaenger",
+      "name": "Anfänger Kreuzheben",
+      "beschreibung": "Schaffe mind. 5 Wiederholungen mit 40kg.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["legs-base"]
+    },
+    {
+      "id": "deadlift-fortgeschrittener",
+      "name": "Fortgeschrittener Kreuzheben",
+      "beschreibung": "Schaffe mind. 5 Wiederholungen mit dem eigenen Körpergewicht.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["deadlift-anfaenger"]
+    },
+    {
+      "id": "deadlift-experte",
+      "name": "Experte Kreuzheben",
+      "beschreibung": "Schaffe mind. 5 Wiederholungen mit dem 1,5-fachen Körpergewicht.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["deadlift-fortgeschrittener"]
+    },
+    {
+      "id": "deadlift-absolute-unit",
+      "name": "Absolute Unit",
+      "beschreibung": "Schaffe einmal das 2,5-fache deines Körpergewichts im Kreuzheben.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["deadlift-experte"]
+    }
+  ]
+}

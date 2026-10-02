@@ -1,0 +1,75 @@
+{
+  "muskel": "Schulter",
+  "skills": [
+    {
+      "id": "shoulder-press-base",
+      "name": "Basis Schulterdrücken",
+      "beschreibung": "Drücke mind. 8 Wiederholungen mit der leeren Stange (20kg) über Kopf.",
+      "icon": "barbell-outline",
+      "voraussetzungen": []
+    },
+    {
+      "id": "shoulder-press-anfaenger",
+      "name": "Anfänger Schulterdrücken",
+      "beschreibung": "Drücke mind. 5 Wiederholungen mit dem 0,4-fachen Körpergewicht.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["shoulder-press-base"]
+    },
+    {
+      "id": "shoulder-press-fortgeschrittener",
+      "name": "Fortgeschrittener Schulterdrücken",
+      "beschreibung": "Drücke mind. 5 Wiederholungen mit dem 0,6-fachen Körpergewicht.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["shoulder-press-anfaenger"]
+    },
+    {
+      "id": "shoulder-press-experte",
+      "name": "Experte Schulterdrücken",
+      "beschreibung": "Drücke mind. 5 Wiederholungen mit dem 0,8-fachen Körpergewicht.",
+      "icon": "barbell-outline",
+      "voraussetzungen": ["shoulder-press-fortgeschrittener"]
+    },
+    {
+      "id": "shoulder-press-absolute-unit",
+      "name": "Absolute Unit",
+      "beschreibung": "Drücke einmal dein eigenes Körpergewicht über Kopf.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["shoulder-press-experte"]
+    },
+    {
+      "id": "handstand-base",
+      "name": "Basis Handstand",
+      "beschreibung": "Halte einen Handstand an der Wand für mind. 30 Sekunden.",
+      "icon": "body-outline",
+      "voraussetzungen": []
+    },
+    {
+      "id": "handstand-pushup-anfaenger",
+      "name": "Anfänger Handstand-Liegestütze",
+      "beschreibung": "Schaffe mind. 3 Handstand-Liegestütze an der Wand (mit Hilfe von Kissen/Matte).",
+      "icon": "body-outline",
+      "voraussetzungen": ["handstand-base"]
+    },
+    {
+      "id": "handstand-pushup-fortgeschrittener",
+      "name": "Fortgeschrittener Handstand-Liegestütze",
+      "beschreibung": "Schaffe mind. 8 Handstand-Liegestütze an der Wand mit vollem Bewegungsumfang.",
+      "icon": "body-outline",
+      "voraussetzungen": ["handstand-pushup-anfaenger"]
+    },
+    {
+      "id": "handstand-pushup-experte",
+      "name": "Experte Handstand-Liegestütze",
+      "beschreibung": "Schaffe mind. 12 Handstand-Liegestütze an der Wand.",
+      "icon": "body-outline",
+      "voraussetzungen": ["handstand-pushup-fortgeschrittener"]
+    },
+    {
+      "id": "freestanding-handstand",
+      "name": "Freier Handstand",
+      "beschreibung": "Halte einen freien Handstand ohne Wand für mind. 20 Sekunden.",
+      "icon": "trophy-outline",
+      "voraussetzungen": ["handstand-base"]
+    }
+  ]
+}
